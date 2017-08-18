@@ -1,0 +1,31 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Salon 206</h1>
+
+<h2>Stylist: @Model.GetFirstName() @Model.GetLastName()</h2>
+<h3>Add new client</h3>
+
+<div class="form">
+  <form action="/stylists/@Model.GetId()/@Model.GetFirstName()-details/client-list" method="post">
+    <label for="client-first-name">First name: </label>
+    <input type="text" id="client-first-name" name="client-first-name">
+    <br>
+    <label for="client-last-name">Last name: </label>
+    <input type="text" id="client-last-name" name="client-last-name">
+    <br>
+    <label for="client-phone">Phone: </label>
+    <input type="text" id="client-phone" name="client-phone">
+    <br>
+    <label for="client-email">Email: </label>
+    <input type="text" id="client-email" name="client-email">
+    <br>
+    <button type="submit">Add client</button>
+  </form>
+</div>
+
+<a href="/">Home</a>
+<a href="/stylists/stylists-all">All stylists</a>
+
+@* <a href="/stylists/@stylist.GetId()/@stylist.GetFirstName()-details">@Model.GetFirstName() Details</a> *@
