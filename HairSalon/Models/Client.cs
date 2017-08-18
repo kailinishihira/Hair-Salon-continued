@@ -164,6 +164,202 @@ namespace HairSalon.Models
       }
     }
 
+    public static Client Find(int id)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM clients WHERE id = (@searchId);";
+
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = id;
+      cmd.Parameters.Add(searchId);
+
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+      int ClientId = 0;
+      string ClientFirstName = "";
+      string ClientLastName = "";
+      string ClientPhone = "";
+      string ClientEmail = "";
+      int ClientStylistId = 0;
+
+      while(rdr.Read())
+      {
+        ClientId = rdr.GetInt32(0);
+        ClientFirstName = rdr.GetString(1);
+        ClientLastName = rdr.GetString(2);
+        ClientPhone = rdr.GetString(3);
+        ClientEmail = rdr.GetString(4);
+        ClientStylistId = rdr.GetInt32(5);
+      }
+      Client newClient = new Client(ClientFirstName, ClientLastName, ClientPhone, ClientEmail, ClientStylistId, ClientId);
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return newClient;
+    }
+
+    public void UpdateClientLastName(string newLastName)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE clients SET last_name = @newLastName WHERE id = @searchId;";
+
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = _id;
+      cmd.Parameters.Add(searchId);
+
+      MySqlParameter lastName = new MySqlParameter();
+      lastName.ParameterName = "@newLastName";
+      lastName.Value = newLastName;
+      cmd.Parameters.Add(lastName);
+
+      cmd.ExecuteNonQuery();
+      _lastName = newLastName;
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+    }
+
+    public void UpdateClientFirstName(string newFirstName)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE clients SET first_name = @newFirstName WHERE id = @searchId;";
+
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = _id;
+      cmd.Parameters.Add(searchId);
+
+      MySqlParameter firstName = new MySqlParameter();
+      firstName.ParameterName = "@newFirstName";
+      firstName.Value = newFirstName;
+      cmd.Parameters.Add(firstName);
+
+      cmd.ExecuteNonQuery();
+      _firstName = newFirstName;
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+    }
+
+    public void UpdateClientPhone(string newPhone)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE clients SET phone = @newPhone WHERE id = @searchId;";
+
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = _id;
+      cmd.Parameters.Add(searchId);
+
+      MySqlParameter phone = new MySqlParameter();
+      phone.ParameterName = "@newPhone";
+      phone.Value = newPhone;
+      cmd.Parameters.Add(phone);
+
+      cmd.ExecuteNonQuery();
+      _phone = newPhone;
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+    }
+
+    public void UpdateClientEmail(string newEmail)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE clients SET email = @newEmail WHERE id = @searchId;";
+
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = _id;
+      cmd.Parameters.Add(searchId);
+
+      MySqlParameter email = new MySqlParameter();
+      email.ParameterName = "@newEmail";
+      email.Value = newEmail;
+      cmd.Parameters.Add(email);
+
+      cmd.ExecuteNonQuery();
+      _email = newEmail;
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+    }
+
+    public void UpdateClient(string newFirstName, string newLastName, string newPhone, string newEmail)
+    {
+      this.UpdateClientFirstName(newFirstName);
+      this.UpdateClientLastName(newLastName);
+      this.UpdateClientPhone(newPhone);
+      this.UpdateClientEmail(newEmail);
+    }
+
+    public static void DeleteClient(int id)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM clients WHERE id = @thisId;";
+
+      MySqlParameter thisId = new MySqlParameter();
+      thisId.ParameterName = "@thisId";
+      thisId.Value = id;
+      cmd.Parameters.Add(thisId);
+
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+    }
+    public string GetStylist()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM stylists WHERE id = @thisId;";
+
+      MySqlParameter thisId = new MySqlParameter();
+      thisId.ParameterName = "@thisId";
+      thisId.Value = this._stylistId;
+      cmd.Parameters.Add(thisId);
+
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+      string stylistFirstName = "";
+
+      while (rdr.Read())
+      {
+        stylistFirstName = rdr.GetString(1);
+      }
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return stylistFirstName;
+    }
 
   }
 }
