@@ -35,6 +35,12 @@ namespace HairSalon.Controllers
       return View("AllStylists", allStylists);
     }
 
+    [HttpGet("/stylists/clients-all")]
+    public ActionResult AllClients()
+    {
+      List<Client> allClients = Client.GetAll();
+      return View(allClients);
+    }
     [HttpGet("/stylists/{id}/{firstname}-details")]
     public ActionResult StylistDetails(int id)
     {
@@ -84,9 +90,28 @@ namespace HairSalon.Controllers
     public ActionResult EditClient(int id2)
     {
       Client thisClient = Client.Find(id2);
-      return View(thisClient);
+      return View("EditClient", thisClient);
     }
 
+    // [HttpPost("/stylists/{id}/{firstname}-details/client-list/{id2}details")]
+    // public ActionResult ClientEditDetails(int id2)
+    // {
+    //   Client thisClient = Client.Find(id2);
+    //   thisClient.UpdateClient(Request.Form["client-first-name"], Request.Form["client-last-name"], Request.Form["client-phone"], Request.Form["client-email"]);
+    //   return RedirectToAction("ClientDetails", thisClient);
+    // }
+
+    [HttpGet("/stylists/{id}/{firstname}-details/client-list/{id2}details/delete")]
+    public ActionResult DeleteClient(int id, int id2)
+    {
+      Client.DeleteClient(id2);
+      Stylist thisStylist = Stylist.Find(id);
+      List<Client> allClients = thisStylist.GetClients();
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      model.Add("stylists", thisStylist);
+      model.Add("clients", allClients);
+      return View("ClientList", model);
+    }
 
   }
 }
