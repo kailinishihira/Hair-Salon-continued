@@ -146,6 +146,69 @@ namespace HairSalon.Models
       }
     }
 
+    public static Stylist Find(int id)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM stylists WHERE id = @thisId;";
+
+      MySqlParameter thisId = new MySqlParameter();
+      thisId.ParameterName = "@thisId";
+      thisId.Value = id;
+      cmd.Parameters.Add(thisId);
+
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+      int stylistId = 0;
+      string firstName = "";
+      string lastName = "";
+      int womensCut = 0;
+      int mensCut = 0;
+
+      while (rdr.Read())
+      {
+        stylistId = rdr.GetInt32(0);
+        firstName = rdr.GetString(1);
+        lastName = rdr.GetString(2);
+        womensCut = rdr.GetInt32(3);
+        mensCut = rdr.GetInt32(4);
+      }
+      Stylist foundStylist = new Stylist(firstName, lastName, womensCut, mensCut, id);
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return foundStylist;
+    }
+
+    public void UpdateStylistLastName(string newLastName)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE stylists SET last_name = @newLastName WHERE id = @searchId;";
+
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = _id;
+      cmd.Parameters.Add(searchId);
+
+      MySqlParameter lastName = new MySqlParameter();
+      lastName.ParameterName = "@newLastName";
+      lastName.Value = newLastName;
+      cmd.Parameters.Add(lastName);
+
+      cmd.ExecuteNonQuery();
+      _lastName = newLastName;
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+    }
+
 
   }
 }

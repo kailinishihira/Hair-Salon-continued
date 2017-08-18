@@ -44,10 +44,48 @@ namespace HairSalon.Tests
       Assert.AreEqual(testId, result);
     }
 
+    [TestMethod]
+    public void Save_SavesStylistToDatabase_StylistList()
+    {
 
+      Stylist testStylist = new Stylist("Kim", "Ito", 50, 40);
+      testStylist.Save();
+      List<Stylist> result = Stylist.GetAll();
+      List<Stylist> testList = new List<Stylist>{testStylist};      //Assert
+      CollectionAssert.AreEqual(testList, result);
+    }
 
+    [TestMethod]
+    public void GetAll_ListAllStylists_StylistList()
+    {
+      Stylist newStylist1 = new Stylist("Kim", "Ito", 50, 40);
+      newStylist1.Save();
+      Stylist newStylist2 = new Stylist("Julie", "Oka", 80, 50);
+      newStylist2.Save();
+      List<Stylist> allStylists = Stylist.GetAll();
+      List<Stylist> expectedList = new List<Stylist>{newStylist1, newStylist2};
+      CollectionAssert.AreEqual(allStylists, expectedList);
+    }
 
+    [TestMethod]
+    public void Find_FindsStylistInDatabase_Stylist()
+    {
+      Stylist testStylist = new Stylist("Kim", "Ito", 50, 40);
+      testStylist.Save();
+      Stylist foundStylist = Stylist.Find(testStylist.GetId());
+      Assert.AreEqual(testStylist, foundStylist);
+    }
 
+    [TestMethod]
+    public void UpdateStylistLastName_UpdatesStylistLastName_StylistName()
+    {
+      Stylist testStylist = new Stylist("Kim", "Ito", 50, 40);
+      testStylist.Save();
+      string newLastName = "Smith";
+      testStylist.UpdateStylistLastName(newLastName);
+      string result = testStylist.GetLastName();
+      Assert.AreEqual(newLastName, result);
+    }
 
   }
 }
