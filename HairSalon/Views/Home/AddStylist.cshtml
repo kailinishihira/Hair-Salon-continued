@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Salon 206</h1>
+
+<h2>Add a new stylist</h2>
+
+<div class="form">
+  <form action="/stylists/stylists-all" method="post">
+    <label for="stylist-first-name">First name: </label>
+    <input type="text" id="stylist-first-name" name="stylist-first-name">
+    <br>
+    <label for="stylist-last-name">Last name: </label>
+    <input type="text" id="stylist-last-name" name="stylist-last-name">
+    <br>
+    <label for="stylist-womens-cut">Women's cut: $</label>
+    <input type="number" id="stylist-womens-cut" name="stylist-womens-cut">
+    <br>
+    <label for="stylist-mens-cut">Men's cut: $</label>
+    <input type="number" id="stylist-mens-cut" name="stylist-mens-cut">
+    <br>
+    <button type="submit">Add stylist</button>
+  </form>
+</div>

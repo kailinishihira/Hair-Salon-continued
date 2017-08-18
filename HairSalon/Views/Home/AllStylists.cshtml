@@ -1,0 +1,13 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Salon 206</h1>
+
+<h2>All Stylists</h2>
+
+<ul>
+  @foreach (var stylist in Model)
+  {
+    <li>@stylist.GetFirstName() @stylist.GetLastName()</li>
+  }
