@@ -183,6 +183,40 @@ namespace HairSalon.Models
       return foundStylist;
     }
 
+    public List<Client> GetClients()
+  {
+     List<Client> allClients = new List<Client> ();
+     MySqlConnection conn = DB.Connection();
+     conn.Open();
+     var cmd = conn.CreateCommand() as MySqlCommand;
+     cmd.CommandText = @"SELECT * FROM clients WHERE stylist_id = @stylistId ORDER BY last_name ASC";
+
+     MySqlParameter stylistId = new MySqlParameter();
+     stylistId.ParameterName = "@stylistId";
+     stylistId.Value = this._id;
+     cmd.Parameters.Add(stylistId);
+
+
+     var rdr = cmd.ExecuteReader() as MySqlDataReader;
+     while(rdr.Read())
+     {
+       int clientId = rdr.GetInt32(0);
+       string firstName = rdr.GetString(1);
+       string lastName = rdr.GetString(2);
+       string phone = rdr.GetString(3);
+       string email = rdr.GetString(4);
+       int fk_stylistId = rdr.GetInt32(5);
+       Client newClient = new Client(firstName, lastName, phone, email, fk_stylistId, clientId);
+       allClients.Add(newClient);
+     }
+     conn.Close();
+     if (conn != null)
+     {
+       conn.Dispose();
+     }
+     return allClients;
+  }
+
     public void UpdateStylistLastName(string newLastName)
     {
       MySqlConnection conn = DB.Connection();

@@ -134,5 +134,19 @@ namespace HairSalon.Tests
       bool expected = (testStylist.GetFirstName() == newFirstName && testStylist.GetLastName() == newLastName && testStylist.GetWomensCut() == newWomensCut && testStylist.GetMensCut() == newMensCut);
       Assert.AreEqual(true, expected);
     }
+
+    [TestMethod]
+    public void GetClients_RetrievesAllStylistsClient_ClientList()
+    {
+      Stylist testStylist = new Stylist("Kim", "Ito", 50, 40);
+      testStylist.Save();
+      Client firstClient = new Client("Abby", "Kline", "303-555-1234", "abby.kline@gmail.com", testStylist.GetId());
+      firstClient.Save();
+      Client secondClient = new Client("Sam", "Ruth", "206-555-1234", "sam.ruth@gmail.com", testStylist.GetId());
+      secondClient.Save();
+      List<Client> testClientList = new List<Client> {firstClient, secondClient};
+      List<Client> resultClientList = testStylist.GetClients();
+      CollectionAssert.AreEqual(testClientList, resultClientList);
+    }
   }
 }
