@@ -59,5 +59,34 @@ namespace HairSalon.Models
         conn.Dispose();
       }
     }
+
+    public static List<Stylist> GetAll()
+        {
+          List<Stylist> allStylist = new List<Stylist> {};
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          var cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"SELECT * FROM stylists ORDER BY last_name ASC;";
+          var rdr = cmd.ExecuteReader() as MySqlDataReader;
+          while(rdr.Read())
+          {
+            int StylistId = rdr.GetInt32(0);
+            string StylistFirstName = rdr.GetString(1);
+            string StylistLastName = rdr.GetString(2);
+            int StylistWomensCut = rdr.GetInt32(3);
+            int StylistMensCut = rdr.GetInt32(4);
+            Stylist newStylist = new Stylist(StylistFirstName, StylistLastName, StylistWomensCut, StylistMensCut, StylistId);
+            allStylist.Add(newStylist);
+          }
+          conn.Close();
+          if (conn != null)
+          {
+            conn.Dispose();
+          }
+          return allStylist;
+        }
+
+
+
   }
 }

@@ -18,5 +18,11 @@ namespace HairSalon.Tests
       Stylist.DeleteAll();
     }
 
+    [TestMethod]
+    public void GetAll_StylistsEmptyAtFirst_0()
+    {
+      int result = Stylist.GetAll().Count;
+      Assert.AreEqual(0, result);
+    }
   }
 }
