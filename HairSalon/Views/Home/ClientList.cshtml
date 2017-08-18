@@ -7,9 +7,9 @@
 <h2>@Model["stylists"].GetFirstName() 's Clients</h2>
 
 <ul>
-  @foreach(var client in @Model["clients"])
+  @foreach(var client in Model["clients"])
   {
-    <li>@client.GetLastName(), @client.GetFirstName()</li>
+    <li><a href="/stylists/@client.GetStylist()/@client.GetStylist()-details/client-list/@client.GetId()details">@client.GetLastName(), @client.GetFirstName()</a></li>
   }
 </ul>
 
