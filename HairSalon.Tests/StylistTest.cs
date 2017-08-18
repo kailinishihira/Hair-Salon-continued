@@ -77,7 +77,7 @@ namespace HairSalon.Tests
     }
 
     [TestMethod]
-    public void UpdateStylistLastName_UpdatesStylistLastName_StylistName()
+    public void UpdateStylistLastName_UpdatesStylistLastName_StylistLastName()
     {
       Stylist testStylist = new Stylist("Kim", "Ito", 50, 40);
       testStylist.Save();
@@ -87,5 +87,52 @@ namespace HairSalon.Tests
       Assert.AreEqual(newLastName, result);
     }
 
+    [TestMethod]
+    public void UpdateStylistFirstName_UpdatesStylistFirstName_StylistFirstName()
+    {
+      Stylist testStylist = new Stylist("Kim", "Ito", 50, 40);
+      testStylist.Save();
+      string newFirstName = "Kimberly";
+      testStylist.UpdateStylistFirstName(newFirstName);
+      string result = testStylist.GetFirstName();
+      Assert.AreEqual(newFirstName, result);
+    }
+
+    [TestMethod]
+    public void UpdateStylistWomensCut_UpdatesStylistWomensCut_StylistWomensCut()
+    {
+      Stylist testStylist = new Stylist("Kim", "Ito", 50, 40);
+      testStylist.Save();
+      int newWomensCut = 60;
+      testStylist.UpdateStylistWomensCut(newWomensCut);
+      int result = testStylist.GetWomensCut();
+      Assert.AreEqual(newWomensCut, result);
+    }
+
+    [TestMethod]
+    public void UpdateStylistMensCut_UpdatesStylistMensCut_StylistMensCut()
+    {
+      Stylist testStylist = new Stylist("Kim", "Ito", 50, 40);
+      testStylist.Save();
+      int newMensCut = 45;
+      testStylist.UpdateStylistMensCut(newMensCut);
+      int result = testStylist.GetMensCut();
+      Assert.AreEqual(newMensCut, result);
+    }
+
+    [TestMethod]
+    public void UpdateStylist_UpdatesAllStylistsDetails_True()
+    {
+      Stylist testStylist = new Stylist("Kim", "Ito", 50, 40);
+      testStylist.Save();
+      string newFirstName = "Kimberly";
+      string newLastName = "Smith";
+      int newWomensCut = 60;
+      int newMensCut = 50;
+
+      testStylist.UpdateStylist(newFirstName, newLastName, newWomensCut, newMensCut);
+      bool expected = (testStylist.GetFirstName() == newFirstName && testStylist.GetLastName() == newLastName && testStylist.GetWomensCut() == newWomensCut && testStylist.GetMensCut() == newMensCut);
+      Assert.AreEqual(true, expected);
+    }
   }
 }

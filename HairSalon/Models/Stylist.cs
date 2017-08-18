@@ -209,6 +209,91 @@ namespace HairSalon.Models
       }
     }
 
+    public void UpdateStylistFirstName(string newFirstName)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE stylists SET first_name = @newFirstName WHERE id = @searchId;";
+
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = _id;
+      cmd.Parameters.Add(searchId);
+
+      MySqlParameter firstName = new MySqlParameter();
+      firstName.ParameterName = "@newFirstName";
+      firstName.Value = newFirstName;
+      cmd.Parameters.Add(firstName);
+
+      cmd.ExecuteNonQuery();
+      _firstName = newFirstName;
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+    }
+
+    public void UpdateStylistWomensCut(int newWomensCut)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE stylists SET womens_cut = @newWomensCut WHERE id = @searchId;";
+
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = _id;
+      cmd.Parameters.Add(searchId);
+
+      MySqlParameter womensCut = new MySqlParameter();
+      womensCut.ParameterName = "@newWomensCut";
+      womensCut.Value = newWomensCut;
+      cmd.Parameters.Add(womensCut);
+
+      cmd.ExecuteNonQuery();
+      _womensCut = newWomensCut;
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+    }
+
+    public void UpdateStylistMensCut(int newMensCut)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE stylists SET mens_cut = @newMensCut WHERE id = @searchId;";
+
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = _id;
+      cmd.Parameters.Add(searchId);
+
+      MySqlParameter mensCut = new MySqlParameter();
+      mensCut.ParameterName = "@newMensCut";
+      mensCut.Value = newMensCut;
+      cmd.Parameters.Add(mensCut);
+
+      cmd.ExecuteNonQuery();
+      _mensCut = newMensCut;
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+    }
+
+    public void UpdateStylist(string newFirstName, string newLastName, int newWomensCut, int newMensCut)
+    {
+      this.UpdateStylistFirstName(newFirstName);
+      this.UpdateStylistLastName(newLastName);
+      this.UpdateStylistWomensCut(newWomensCut);
+      this.UpdateStylistMensCut(newMensCut);
+    }
 
   }
 }
