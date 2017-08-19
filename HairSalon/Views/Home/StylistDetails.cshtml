@@ -22,16 +22,14 @@
 <h2>stylist details</h2>
 
 <div class="row">
-  <div class="col-md-2">
-  </div>
-  <div class="col-md-4">
+  <div class="col-md-6">
     <p><span class="headers">@Model["stylists"].GetFirstName() @Model["stylists"].GetLastName()</span> | <a href='/stylists/@Model["stylists"].GetId()/details/edit'><span class="links">edit</span></a> | <a href='/stylists/@Model["stylists"].GetId()/details/delete'><span class="links">delete</span></a><p>
     <p>stylist id: @Model["stylists"].GetId()</p>
     <p>women's cut: $@Model["stylists"].GetWomensCut()</p>
     <p>men's cut: $@Model["stylists"].GetMensCut()</p>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-6">
     <p><span class="headers">new client for @Model["stylists"].GetFirstName()</span></p>
     <div class="form">
       <form action='stylists/new-client' method="post">
@@ -50,8 +48,6 @@
         <button type="submit">add client</button>
       </form>
     </div>
-  </div>
-  <div class="col-md-2">
   </div>
 </div>
 
