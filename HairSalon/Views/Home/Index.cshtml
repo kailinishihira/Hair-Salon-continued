@@ -24,6 +24,6 @@
 <div class="stylists">
   @foreach (var stylist in Model)
   {
-    <a href="/stylists/@stylist.GetId()/details"><button class="stylists-buttons">@stylist.GetFirstName()</button></a>
+    <a href="/stylists/@stylist.GetId()/details"><button type="button" class=" btn-lg stylists-buttons">@stylist.GetFirstName()</button></a>
   }
 </div>

@@ -22,32 +22,43 @@
 <h2>stylist details</h2>
 
 <div class="row">
-  <div class="col-md-6">
-    <p><span class="headers">@Model["stylists"].GetFirstName() @Model["stylists"].GetLastName()</span> | <a href='/stylists/@Model["stylists"].GetId()/details/edit'><span class="links">edit</span></a> | <a href='/stylists/@Model["stylists"].GetId()/details/delete'><span class="links">delete</span></a><p>
-    <p>stylist id: @Model["stylists"].GetId()</p>
-    <p>women's cut: $@Model["stylists"].GetWomensCut()</p>
-    <p>men's cut: $@Model["stylists"].GetMensCut()</p>
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-4">
+    <p><span class="headers">@Model["stylists"].GetFirstName() @Model["stylists"].GetLastName()</span> | <a href='/stylists/@Model["stylists"].GetId()/details/edit'><span class="links">edit</span></a> <p>
+    <div class="well stylist-details">
+      <p>stylist id: @Model["stylists"].GetId()</p>
+      <p>women's cut: $@Model["stylists"].GetWomensCut()</p>
+      <p>men's cut: $@Model["stylists"].GetMensCut()</p>
+    </div>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-2">
+  </div>
+
+  <div class="col-md-4">
     <p><span class="headers">new client for @Model["stylists"].GetFirstName()</span></p>
-    <div class="form">
-      <form action='stylists/new-client' method="post">
-        <label for="client-first-name">first name: </label>
-        <input type="text" id="client-first-name" name="client-first-name">
-        <br>
-        <label for="client-last-name">last name: </label>
-        <input type="text" id="client-last-name" name="client-last-name">
-        <br>
-        <label for="client-phone">phone: </label>
-        <input type="text" id="client-phone" name="client-phone">
-        <br>
-        <label for="client-email">email: </label>
-        <input type="text" id="client-email" name="client-email">
-        <br>
-        <button type="submit">add client</button>
-      </form>
+    <div class="well stylist-details">
+      <div class="form">
+        <form action='stylists/new-client' method="post">
+          <label for="client-first-name">first name: </label>
+          <input type="text" id="client-first-name" name="client-first-name">
+          <br>
+          <label for="client-last-name">last name: </label>
+          <input type="text" id="client-last-name" name="client-last-name">
+          <br>
+          <label for="client-phone">phone: </label>
+          <input type="text" id="client-phone" name="client-phone">
+          <br>
+          <label for="client-email">email: </label>
+          <input type="text" id="client-email" name="client-email">
+          <br>
+          <button type="submit">add client</button>
+        </form>
+      </div>
     </div>
+  </div>
+  <div class="col-md-1">
   </div>
 </div>
 

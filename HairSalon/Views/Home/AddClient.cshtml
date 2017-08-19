@@ -22,43 +22,44 @@
 <h2>new client</h2>
 
 <div class="row">
-  <div class="col-md-2">
-  </div>
-  <div class="col-md-4">
+  <div class="col-md-5">
     <h3>client info</h3>
-    <div class="form">
-      <form action="/stylists/new-client/add" method="post">
-        <label for="client-first-name">first name: </label>
-        <input type="text" id="client-first-name" name="client-first-name">
-        <br>
-        <label for="client-last-name">last name: </label>
-        <input type="text" id="client-last-name" name="client-last-name">
-        <br>
-        <label for="client-phone">phone: </label>
-        <input type="text" id="client-phone" name="client-phone">
-        <br>
-        <label for="client-email">email: </label>
-        <input type="text" id="client-email" name="client-email">
-        <br>
-        <label for="stylist-id">stylist id: </label>
-        <input type="number" id="stylist-id" name="stylist-id">
-        <br>
-        <button type="submit">add client</button>
-      </form>
+    <div class="well client-info">
+      <div class="form">
+        <form action="/stylists/new-client/add" method="post">
+          <label for="client-first-name">first name: </label>
+          <input type="text" id="client-first-name" name="client-first-name">
+          <br>
+          <label for="client-last-name">last name: </label>
+          <input type="text" id="client-last-name" name="client-last-name">
+          <br>
+          <label for="client-phone">phone: </label>
+          <input type="text" id="client-phone" name="client-phone">
+          <br>
+          <label for="client-email">email: </label>
+          <input type="text" id="client-email" name="client-email">
+          <br>
+          <label for="stylist-id">stylist id: </label>
+          <input type="number" id="stylist-id" name="stylist-id">
+          <br>
+          <button type="submit">add client</button>
+        </form>
+      </div>
     </div>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-2">
+  </div>
+
+  <div class="col-md-5">
     <h3>stylist key</h3>
-    <div class="well key">
+    <div class="well stylist-key">
       <ul>
         @foreach(var stylist in Model)
         {
-          <li><a href="/stylists/@stylist.GetId()/details"><span class="names">@stylist.GetFirstName() @stylist.GetLastName() : id @stylist.GetId()</span></a></li>
+          <li><a href="/stylists/@stylist.GetId()/details"><span class="names">@stylist.GetFirstName() @stylist.GetLastName() | id @stylist.GetId()</span></a></li>
         }
       </ul>
     </div>
-  </div>
-  <div class="col-md-2">
   </div>
 </div>

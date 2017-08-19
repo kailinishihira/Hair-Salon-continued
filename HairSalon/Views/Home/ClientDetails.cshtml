@@ -19,45 +19,54 @@
 
 <h1>salon 206</h1>
 
-<h2>client information</h2>
+<h2>client details</h2>
 
 <div class="row">
-  <div class="col-md-6">
+
+  <div class="col-md-5">
     <h3>@Model.GetFirstName() @Model.GetLastName()</h3>
-    <p>stylist: @Model.GetStylist() | <a href="/stylists/@Model.GetStylistId()/details"><span class="links">details</span></a></p>
-    <p>phone: @Model.GetPhone()</p>
-    <p>email: @Model.GetEmail()</p>
+      <div class="well client-details">
+        <p>stylist: @Model.GetStylist() | <a href="/stylists/@Model.GetStylistId()/details"><span class="links">details</span></a></p>
+        <p>phone: @Model.GetPhone()</p>
+        <p>email: @Model.GetEmail()</p>
+    </div>
   </div>
 
-  <div class="col-md-6">
-    <h3>edit client information</h3>
-    <div class="form">
-      <form action="/stylists/@Model.GetStylistId()/details/@Model.GetId()details/edit-first-name" method="post">
-        <label for="client-first-name">first name: </label>
-        <input type="text" id="client-first-name" name="client-first-name">
-        <button type="submit">update</button>
-      </form>
-      <form action="/stylists/@Model.GetStylistId()/details/@Model.GetId()details/edit-last-name" method="post">
-        <label for="client-last-name">last name: </label>
-        <input type="text" id="client-last-name" name="client-last-name">
-        <button type="submit">update</button>
-      </form>
-      <form action="/stylists/@Model.GetStylistId()/details/@Model.GetId()details/edit-phone" method="post">
-        <label for="client-phone">phone: </label>
-        <input type="text" id="client-phone" name="client-phone">
-        <button type="submit">update</button>
-      </form>
-      <form action="/stylists/@Model.GetStylistId()/details/@Model.GetId()details/edit-email" method="post">
-        <label for="client-email">email: </label>
-        <input type="text" id="client-email" name="client-email">
-        <button type="submit">update</button>
-      </form>
-      <form action="/stylists/@Model.GetStylistId()/details/@Model.GetId()details/edit-stylist-id" method="post">
-        <label for="stylist-id">stylist id: </label>
-        <input type="text" id="stylist-id" name="stylist-id">
-        <button type="submit">update</button>
-      </form>
+<div class="col-md-2">
+</div>
+
+  <div class="col-md-5">
+    <h3>edit client details</h3>
+    <div class="well edit-client">
+      <div class="form">
+        <form action="/stylists/@Model.GetStylistId()/details/@Model.GetId()details/edit-first-name" method="post">
+          <label for="client-first-name">first name: </label>
+          <input type="text" id="client-first-name" name="client-first-name">
+          <button type="submit">update</button>
+        </form>
+        <form action="/stylists/@Model.GetStylistId()/details/@Model.GetId()details/edit-last-name" method="post">
+          <label for="client-last-name">last name: </label>
+          <input type="text" id="client-last-name" name="client-last-name">
+          <button type="submit">update</button>
+        </form>
+        <form action="/stylists/@Model.GetStylistId()/details/@Model.GetId()details/edit-phone" method="post">
+          <label for="client-phone">phone: </label>
+          <input type="text" id="client-phone" name="client-phone">
+          <button type="submit">update</button>
+        </form>
+        <form action="/stylists/@Model.GetStylistId()/details/@Model.GetId()details/edit-email" method="post">
+          <label for="client-email">email: </label>
+          <input type="text" id="client-email" name="client-email">
+          <button type="submit">update</button>
+        </form>
+        <form action="/stylists/@Model.GetStylistId()/details/@Model.GetId()details/edit-stylist-id" method="post">
+          <label for="stylist-id">stylist id: </label>
+          <input type="text" id="stylist-id" name="stylist-id">
+          <button type="submit">update</button>
+        </form>
+      </div>
     </div>
-    <p><a href="/stylists/@Model.GetStylistId()/details/@Model.GetId()details/delete"><span class="links">delete this client</span></a><p>
   </div>
 </div>
+
+<p class="delete"><a href="/stylists/@Model.GetStylistId()/details/@Model.GetId()details/delete"><span class="links">delete client</span></a><p>
