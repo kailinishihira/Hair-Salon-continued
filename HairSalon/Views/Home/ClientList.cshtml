@@ -6,12 +6,12 @@
 
 <h2>@Model["stylists"].GetFirstName() 's Clients</h2>
 
-<ul>
+<ol>
   @foreach(var client in Model["clients"])
   {
     <li><a href="/stylists/@client.GetStylistId()/@client.GetStylist()-details/client-list/@client.GetId()details">@client.GetLastName(), @client.GetFirstName()</a></li>
   }
-</ul>
+</ol>
 
 <a href="/">Home</a>
 <a href="/stylists/stylists-all">All stylists</a>

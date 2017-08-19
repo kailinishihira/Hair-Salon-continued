@@ -86,20 +86,20 @@ namespace HairSalon.Controllers
       return View(thisClient);
     }
 
-    [HttpGet("/stylists/{id}/{firstname}-details/client-list/{id2}details/edit")]
-    public ActionResult EditClient(int id2)
+    [HttpGet("/stylists/{id}/edit")]
+    public ActionResult EditClient(int id)
     {
-      Client thisClient = Client.Find(id2);
+      Client thisClient = Client.Find(id);
       return View("EditClient", thisClient);
     }
 
-    // [HttpPost("/stylists/{id}/{firstname}-details/client-list/{id2}details")]
-    // public ActionResult ClientEditDetails(int id2)
-    // {
-    //   Client thisClient = Client.Find(id2);
-    //   thisClient.UpdateClient(Request.Form["client-first-name"], Request.Form["client-last-name"], Request.Form["client-phone"], Request.Form["client-email"]);
-    //   return RedirectToAction("ClientDetails", thisClient);
-    // }
+    [HttpPost("/stylists/{id}/{firstname}-details/client-list/{id2}details")]
+    public ActionResult ClientEditDetails(int id2)
+    {
+      Client thisClient = Client.Find(id2);
+      thisClient.UpdateClient(Request.Form["client-first-name"], Request.Form["client-last-name"], Request.Form["client-phone"], Request.Form["client-email"]);
+      return RedirectToAction("ClientDetails", thisClient);
+    }
 
     [HttpGet("/stylists/{id}/{firstname}-details/client-list/{id2}details/delete")]
     public ActionResult DeleteClient(int id, int id2)
