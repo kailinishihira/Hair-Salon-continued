@@ -15,6 +15,7 @@ namespace HairSalon.Tests
 
     public void Dispose()
     {
+      Client.DeleteAll();
       Stylist.DeleteAll();
     }
 
@@ -58,9 +59,9 @@ namespace HairSalon.Tests
     [TestMethod]
     public void GetAll_ListAllStylists_StylistList()
     {
-      Stylist newStylist1 = new Stylist("Kim", "Ito", 50, 40);
+      Stylist newStylist1 = new Stylist("Julie", "Oka", 80, 50);
       newStylist1.Save();
-      Stylist newStylist2 = new Stylist("Julie", "Oka", 80, 50);
+      Stylist newStylist2 = new Stylist("Kim", "Ito", 50, 40);
       newStylist2.Save();
       List<Stylist> allStylists = Stylist.GetAll();
       List<Stylist> expectedList = new List<Stylist>{newStylist1, newStylist2};
@@ -148,5 +149,19 @@ namespace HairSalon.Tests
       List<Client> resultClientList = testStylist.GetClients();
       CollectionAssert.AreEqual(testClientList, resultClientList);
     }
+
+    [TestMethod]
+    public void DeleteStylist_RemoveOneStylistFromList_StylistList()
+    {
+      Stylist newStylist1 = new Stylist("Kim", "Ito", 50, 40);
+      newStylist1.Save();
+      Stylist newStylist2 = new Stylist("Ian", "Wynn", 60, 50);
+      newStylist2.Save();
+      Stylist.DeleteStylist(newStylist1.GetId());
+      List<Stylist> allStylists = Stylist.GetAll();
+      List<Stylist> expectedList = new List<Stylist>{newStylist2};
+      CollectionAssert.AreEqual(allStylists, expectedList);
+    }
+
   }
 }

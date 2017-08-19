@@ -2,30 +2,63 @@
   Layout = "_Layout";
 }
 
-<h1>Salon 206</h1>
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link" href="/">home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/stylists/clients-all">all clients</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/stylists/new-client">add client</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/stylists/new-stylist">add stylist</a>
+  </li>
+</ul>
 
-<h2>Stylist: @Model.GetFirstName() @Model.GetLastName()</h2>
-<h3>Add new client</h3>
+<h1>salon 206</h1>
 
-<div class="form">
-  <form action="/stylists/@Model.GetId()/@Model.GetFirstName()-details/client-list" method="post">
-    <label for="client-first-name">First name: </label>
-    <input type="text" id="client-first-name" name="client-first-name">
-    <br>
-    <label for="client-last-name">Last name: </label>
-    <input type="text" id="client-last-name" name="client-last-name">
-    <br>
-    <label for="client-phone">Phone: </label>
-    <input type="text" id="client-phone" name="client-phone">
-    <br>
-    <label for="client-email">Email: </label>
-    <input type="text" id="client-email" name="client-email">
-    <br>
-    <button type="submit">Add client</button>
-  </form>
+<h2>new client</h2>
+
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-4">
+    <h3>client info</h3>
+    <div class="form">
+      <form action="/stylists/new-client/add" method="post">
+        <label for="client-first-name">first name: </label>
+        <input type="text" id="client-first-name" name="client-first-name">
+        <br>
+        <label for="client-last-name">last name: </label>
+        <input type="text" id="client-last-name" name="client-last-name">
+        <br>
+        <label for="client-phone">phone: </label>
+        <input type="text" id="client-phone" name="client-phone">
+        <br>
+        <label for="client-email">email: </label>
+        <input type="text" id="client-email" name="client-email">
+        <br>
+        <label for="stylist-id">stylist id: </label>
+        <input type="number" id="stylist-id" name="stylist-id">
+        <br>
+        <button type="submit">add client</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <h3>stylist key</h3>
+    <div class="well key">
+      <ul>
+        @foreach(var stylist in Model)
+        {
+          <li><a href="/stylists/@stylist.GetId()/details"><span class="names">@stylist.GetFirstName() @stylist.GetLastName() : id @stylist.GetId()</span></a></li>
+        }
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-2">
+  </div>
 </div>
-
-<a href="/">Home</a>
-<a href="/stylists/stylists-all">All stylists</a>
-
-@* <a href="/stylists/@stylist.GetId()/@stylist.GetFirstName()-details">@Model.GetFirstName() Details</a> *@

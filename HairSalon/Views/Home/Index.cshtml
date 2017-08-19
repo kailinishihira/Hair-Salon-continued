@@ -2,16 +2,28 @@
   Layout = "_Layout";
 }
 
-<h1>Salon 206</h1>
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link" href="/">home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/stylists/clients-all">all clients</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/stylists/new-client">add client</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/stylists/new-stylist">add stylist</a>
+  </li>
+</ul>
 
-<a href="/stylists/add">Add a new stylist</a>
+<h1>salon 206</h1>
 
-<a href="/stylists/stylists-all">All stylists</a>
+<h2>stylists</h2>
 
-<a href="/stylists/clients-all">All clients</a>
-
-
-
-@* <a href="">All clients</a>
-
-<a href="">Add new client</a>  *@
+<div class="stylists">
+  @foreach (var stylist in Model)
+  {
+    <a href="/stylists/@stylist.GetId()/details"><button class="stylists-buttons">@stylist.GetFirstName()</button></a>
+  }
+</div>

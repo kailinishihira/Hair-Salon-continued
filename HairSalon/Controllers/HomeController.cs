@@ -10,22 +10,23 @@ namespace HairSalon.Controllers
     [HttpGet("/")]
     public ActionResult Index()
     {
-      return View();
+      List<Stylist> allStylists = Stylist.GetAll();
+      return View(allStylists);
     }
 
-    [HttpGet("/stylists/add")]
+    [HttpGet("/stylists/new-stylist")]
     public ActionResult AddStylist()
     {
       return View();
     }
 
     [HttpPost("/stylists/stylists-all")]
-    public ActionResult AllStylists()
+    public ActionResult NewStylist()
     {
       Stylist newStylist = new Stylist(Request.Form["stylist-first-name"], Request.Form["stylist-last-name"], int.Parse(Request.Form["stylist-womens-cut"]), int.Parse(Request.Form["stylist-mens-cut"]));
       newStylist.Save();
       List<Stylist> allStylists = Stylist.GetAll();
-      return View(allStylists);
+      return View("Index", allStylists);
     }
 
     [HttpGet("/stylists/stylists-all")]
@@ -36,27 +37,30 @@ namespace HairSalon.Controllers
     }
 
     [HttpGet("/stylists/clients-all")]
-    public ActionResult AllClients()
+    public ActionResult AllClients(int id)
     {
       List<Client> allClients = Client.GetAll();
       return View(allClients);
     }
-    [HttpGet("/stylists/{id}/{firstname}-details")]
-    public ActionResult StylistDetails(int id)
+
+    [HttpGet("/stylists/new-client")]
+    public ActionResult AddClient()
     {
-      Stylist thisStylist = Stylist.Find(id);
-      return View(thisStylist);
+      List<Stylist> allStylists = Stylist.GetAll();
+      return View("AddClient", allStylists);
     }
 
-    [HttpGet("/stylists/{id}/{firstname}-details/add-client")]
-    public ActionResult AddClient(int id)
+    [HttpPost("/stylists/new-client/add")]
+    public ActionResult AddNewClient()
     {
-      Stylist thisStylist = Stylist.Find(id);
-      return View(thisStylist);
+      Client newClient = new Client(Request.Form["client-first-name"], Request.Form["client-last-name"], Request.Form["client-phone"], Request.Form["client-email"], int.Parse(Request.Form["stylist-id"]));
+      newClient.Save();
+      List<Client> allClients = Client.GetAll();
+      return View("AllClients", allClients);
     }
 
-    [HttpPost("/stylists/{id}/{firstname}-details/client-list")]
-    public ActionResult ClientList(int id)
+    [HttpPost("/stylists/{id}/stylists/new-client")]
+    public ActionResult StylistAddClient(int id)
     {
       Stylist thisStylist = Stylist.Find(id);
       Client newClient = new Client(Request.Form["client-first-name"], Request.Form["client-last-name"], Request.Form["client-phone"], Request.Form["client-email"], id);
@@ -65,10 +69,10 @@ namespace HairSalon.Controllers
       Dictionary<string, object> model = new Dictionary<string, object>();
       model.Add("stylists", thisStylist);
       model.Add("clients", allClients);
-      return View("ClientList", model);
+      return View("StylistDetails", model);
     }
 
-    [HttpGet("/stylists/{id}/{firstname}-details/client-list")]
+    [HttpGet("/stylists/{id}/details")]
     public ActionResult AllClientsList(int id)
     {
       Stylist thisStylist = Stylist.Find(id);
@@ -76,32 +80,103 @@ namespace HairSalon.Controllers
       Dictionary<string, object> model = new Dictionary<string, object>();
       model.Add("stylists", thisStylist);
       model.Add("clients", allClients);
-      return View("ClientList", model);
+      return View("StylistDetails", model);
     }
 
-    [HttpGet("/stylists/{id}/{firstname}-details/client-list/{id2}details")]
+    [HttpGet("/stylists/{id}/details/delete")]
+    public ActionResult DeleteStylist(int id)
+    {
+      Stylist.DeleteStylist(id);
+      return View();
+    }
+
+    [HttpGet("/stylists/{id}/details/edit")]
+    public ActionResult EditStylist(int id)
+    {
+      Stylist thisStylist = Stylist.Find(id);
+      return View(thisStylist);
+    }
+
+    [HttpPost("/stylists/{id}/details/edit-first-name")]
+    public ActionResult EditStylistFirstName(int id)
+    {
+      Stylist thisStylist = Stylist.Find(id);
+      thisStylist.UpdateStylistFirstName(Request.Form["stylist-first-name"]);
+      return View("EditStylist", thisStylist);
+    }
+
+    [HttpPost("/stylists/{id}/details/edit-last-name")]
+    public ActionResult EditStylistLastName(int id)
+    {
+      Stylist thisStylist = Stylist.Find(id);
+      thisStylist.UpdateStylistLastName(Request.Form["stylist-last-name"]);
+      return View("EditStylist", thisStylist);
+    }
+
+    [HttpPost("/stylists/{id}/details/edit-womens-cut")]
+    public ActionResult EditStylistWomensCut(int id)
+    {
+      Stylist thisStylist = Stylist.Find(id);
+      thisStylist.UpdateStylistWomensCut(int.Parse(Request.Form["stylist-womens-cut"]));
+      return View("EditStylist", thisStylist);
+    }
+
+    [HttpPost("/stylists/{id}/details/edit-mens-cut")]
+    public ActionResult EditStylistMensCut(int id)
+    {
+      Stylist thisStylist = Stylist.Find(id);
+      thisStylist.UpdateStylistMensCut(int.Parse(Request.Form["stylist-mens-cut"]));
+      return View("EditStylist", thisStylist);
+    }
+
+    [HttpGet("/stylists/{id}/details/{id2}details")]
     public ActionResult ClientDetails(int id2)
     {
       Client thisClient = Client.Find(id2);
       return View(thisClient);
     }
 
-    [HttpGet("/stylists/{id}/edit")]
-    public ActionResult EditClient(int id)
-    {
-      Client thisClient = Client.Find(id);
-      return View("EditClient", thisClient);
-    }
-
-    [HttpPost("/stylists/{id}/{firstname}-details/client-list/{id2}details")]
-    public ActionResult ClientEditDetails(int id2)
+    [HttpPost("/stylists/{id}/details/{id2}details/edit-first-name")]
+    public ActionResult ClientEditFirstName(int id2)
     {
       Client thisClient = Client.Find(id2);
-      thisClient.UpdateClient(Request.Form["client-first-name"], Request.Form["client-last-name"], Request.Form["client-phone"], Request.Form["client-email"]);
+      thisClient.UpdateClientFirstName(Request.Form["client-first-name"]);
       return RedirectToAction("ClientDetails", thisClient);
     }
 
-    [HttpGet("/stylists/{id}/{firstname}-details/client-list/{id2}details/delete")]
+    [HttpPost("/stylists/{id}/details/{id2}details/edit-last-name")]
+    public ActionResult ClientEditLastName(int id2)
+    {
+      Client thisClient = Client.Find(id2);
+      thisClient.UpdateClientLastName(Request.Form["client-last-name"]);
+      return RedirectToAction("ClientDetails", thisClient);
+    }
+
+    [HttpPost("/stylists/{id}/details/{id2}details/edit-phone")]
+    public ActionResult ClientEditPhone(int id2)
+    {
+      Client thisClient = Client.Find(id2);
+      thisClient.UpdateClientPhone(Request.Form["client-phone"]);
+      return RedirectToAction("ClientDetails", thisClient);
+    }
+
+    [HttpPost("/stylists/{id}/details/{id2}details/edit-email")]
+    public ActionResult ClientEditEmail(int id2)
+    {
+      Client thisClient = Client.Find(id2);
+      thisClient.UpdateClientEmail(Request.Form["client-email"]);
+      return RedirectToAction("ClientDetails", thisClient);
+    }
+
+    [HttpPost("/stylists/{id}/details/{id2}details/edit-stylist-id")]
+    public ActionResult ClientEditStylistID(int id2)
+    {
+      Client thisClient = Client.Find(id2);
+      thisClient.UpdateClientStylistId(int.Parse(Request.Form["stylist-id"]));
+      return RedirectToAction("ClientDetails", thisClient);
+    }
+
+    [HttpGet("/stylists/{id}/details/{id2}details/delete")]
     public ActionResult DeleteClient(int id, int id2)
     {
       Client.DeleteClient(id2);
@@ -110,7 +185,7 @@ namespace HairSalon.Controllers
       Dictionary<string, object> model = new Dictionary<string, object>();
       model.Add("stylists", thisStylist);
       model.Add("clients", allClients);
-      return View("ClientList", model);
+      return View(model);
     }
 
   }

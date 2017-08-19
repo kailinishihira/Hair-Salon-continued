@@ -1,3 +1,4 @@
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using HairSalon.Models;
@@ -143,6 +144,17 @@ namespace HairSalon.Tests
       testClient.UpdateClient(newFirstName, newLastName, newPhone, newEmail);
       bool results = (testClient.GetFirstName() == newFirstName && testClient.GetLastName() == newLastName && testClient.GetPhone() == newPhone && testClient.GetEmail() == newEmail);
       Assert.AreEqual(true, results);
+    }
+
+    [TestMethod]
+    public void Update_UpdatesClientStylistIdInDatabase_Int()
+    {
+      Client testClient = new Client("Abby", "Kline", "303-555-1234", "abby.kline@hotmail.com", 1);
+      testClient.Save();
+      int newStylistId = 2;
+      testClient.UpdateClientStylistId(newStylistId);
+      int result = testClient.GetStylistId();
+      Assert.AreEqual(newStylistId, result);
     }
 
     [TestMethod]

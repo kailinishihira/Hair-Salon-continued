@@ -2,16 +2,67 @@
   Layout = "_Layout";
 }
 
-<h1>Salon 206</h1>
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link" href="/">home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/stylists/clients-all">all clients</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/stylists/new-client">add client</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/stylists/new-stylist">add stylist</a>
+  </li>
+</ul>
 
-<h2>Stylist Details</h2>
+<h1>salon 206</h1>
 
-<h3>@Model.GetFirstName() @Model.GetLastName()</h3>
-<p>Women's cut: $@Model.GetWomensCut()</p>
-<p>Men's cut: $@Model.GetMensCut()</p>
+<h2>stylist details</h2>
 
-@* <a href="/stylists/@Model.GetId()/@Model.GetFirstName()-details/edit">Edit @Model.GetFirstName() Details</a> *@
-<a href="/stylists/@Model.GetId()/@Model.GetFirstName()-details/client-list">View @Model.GetFirstName() 's clients</a>
-<a href="/stylists/@Model.GetId()/@Model.GetFirstName()-details/add-client">Add new client</a>
-<a href="/">Home</a>
-<a href="/stylists/stylists-all">All stylists</a>
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-4">
+    <p><span class="headers">@Model["stylists"].GetFirstName() @Model["stylists"].GetLastName()</span> | <a href='/stylists/@Model["stylists"].GetId()/details/edit'><span class="links">edit</span></a> | <a href='/stylists/@Model["stylists"].GetId()/details/delete'><span class="links">delete</span></a><p>
+    <p>stylist id: @Model["stylists"].GetId()</p>
+    <p>women's cut: $@Model["stylists"].GetWomensCut()</p>
+    <p>men's cut: $@Model["stylists"].GetMensCut()</p>
+  </div>
+
+  <div class="col-md-4">
+    <p><span class="headers">new client for @Model["stylists"].GetFirstName()</span></p>
+    <div class="form">
+      <form action='stylists/new-client' method="post">
+        <label for="client-first-name">first name: </label>
+        <input type="text" id="client-first-name" name="client-first-name">
+        <br>
+        <label for="client-last-name">last name: </label>
+        <input type="text" id="client-last-name" name="client-last-name">
+        <br>
+        <label for="client-phone">phone: </label>
+        <input type="text" id="client-phone" name="client-phone">
+        <br>
+        <label for="client-email">email: </label>
+        <input type="text" id="client-email" name="client-email">
+        <br>
+        <button type="submit">add client</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-2">
+  </div>
+</div>
+
+
+<h2>client list</h2>
+
+<div class="well name-list">
+  <ol>
+    @foreach(var client in Model["clients"])
+    {
+      <li><a href="/stylists/@client.GetStylistId()/details/@client.GetId()details"><span class="names">@client.GetLastName(), @client.GetFirstName()</span></a></li>
+    }
+  </ol>
+</div>

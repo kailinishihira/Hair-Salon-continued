@@ -1,1 +1,106 @@
+body {
+  letter-spacing: 2px;
+  color: #47494c;
+  background-color: #eaeaea;
+}
 
+h1 {
+  font-size: 60px;
+  letter-spacing: 20px;
+  text-align: center;
+  margin-bottom: 3%;
+  font-family: 'Raleway', sans-serif;
+}
+
+h2 {
+  font-size: 40px;
+  letter-spacing: 20px;
+  text-align: center;
+  color: #636566;
+}
+
+h3 {
+  letter-spacing: 8px;
+  text-align: left;
+  margin-bottom: 4%;
+}
+
+.stylists{
+  text-align: center;
+  margin-top: 5%;
+}
+
+.headers {
+  font-size: 24px;
+  letter-spacing: 8px;
+}
+
+button {
+  letter-spacing: 2px;
+  background-color: white;
+}
+
+.stylists-buttons {
+  background-color: white;
+  padding: 20px 30px 20px 30px;
+  margin: 5px 10px 5px 10px;
+  font-size: 20px;
+  letter-spacing: 4px;
+  color: #51565e;
+  font-family: 'Raleway', sans-serif;
+}
+
+.stylists-buttons:hover {
+  color: #bbbdbf;
+}
+
+label {
+  font-weight: normal;
+}
+.nav-link {
+  color: #898b8c;
+}
+
+.nav-link:hover {
+  color: #47494c;
+}
+
+.links {
+  color: #898b8c;
+  font-size: 12px;
+}
+
+.links:hover {
+  color: #47494c;
+}
+
+.names {
+  color: #47494c;
+}
+
+.names:hover {
+  color: #bbbdbf;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.name-list {
+  margin-left: 25%;
+  margin-right: 25%;
+  background-color: white;
+}
+
+.key {
+  background-color: white;
+}
+
+.row {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+ul {
+  list-style-type: none;
+}
