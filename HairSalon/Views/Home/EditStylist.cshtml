@@ -27,33 +27,37 @@
   <div class="col-md-4">
     <p><span class="headers">@Model.GetFirstName() @Model.GetLastName() | <a href="/stylists/@Model.GetId()/details"></span><span class="links">details</span></a></p>
     <div class="well stylist-details">
-      <p>women's cut: $@Model.GetWomensCut()</p>
-      <p>men's cut: $@Model.GetMensCut()</p>
+      <p>women's cut $@Model.GetWomensCut()</p>
+      <p>men's cut $@Model.GetMensCut()</p>
     </div>
   </div>
   <div class="col-md-2">
   </div>
   <div class="col-md-4">
-    <p><span class="headers">Edit @Model.GetFirstName() 's details</span></p>
+    <p><span class="headers">Edit @Model.GetFirstName()'s details</span></p>
     <div class="well edit-stylist">
       <div class="form">
         <form action="/stylists/@Model.GetId()/details/edit-first-name" method="post">
-          <label for="stylist-first-name">first name: </label>
+          <label for="stylist-first-name">first name </label>
+          <br>
           <input type="text" id="stylist-first-name" name="stylist-first-name">
           <button type="submit">update</button>
         </form>
         <form action="/stylists/@Model.GetId()/details/edit-last-name" method="post">
-          <label for="stylist-last-name">last name: </label>
+          <label for="stylist-last-name">last name </label>
+          <br>
           <input type="text" id="stylist-last-name" name="stylist-last-name">
           <button type="submit">update</button>
         </form>
         <form action="/stylists/@Model.GetId()/details/edit-womens-cut" method="post">
-          <label for="stylist-womens-cut">women's cut: $</label>
+          <label for="stylist-womens-cut">women's cut $</label>
+          <br>
           <input type="number" id="stylist-womens-cut" name="stylist-womens-cut">
           <button type="submit">update</button>
         </form>
         <form action="/stylists/@Model.GetId()/details/edit-mens-cut" method="post">
-          <label for="stylist-mens-cut">men's cut: $</label>
+          <label for="stylist-mens-cut">men's cut $</label>
+          <br>
           <input type="number" id="stylist-mens-cut" name="stylist-mens-cut">
           <button type="submit">update</button>
         </form>

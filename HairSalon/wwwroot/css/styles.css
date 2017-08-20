@@ -9,8 +9,8 @@ h1 {
   font-size: 100px;
   letter-spacing: 25px;
   text-align: center;
-  margin-top: 3%;
-  margin-bottom: 3%;
+  margin-top: 2%;
+  margin-bottom: 2%;
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
 }
@@ -20,14 +20,14 @@ h2 {
   letter-spacing: 25px;
   text-align: center;
   color: #636566;
-  margin-bottom: 3%;
+  margin-bottom: 2%;
 }
 
 h3 {
   letter-spacing: 8px;
   text-align: left;
   margin-bottom: 4%;
-  font-size: 26px;
+  font-size: 28px;
   color: #000000;
 }
 
@@ -37,7 +37,7 @@ h3 {
 }
 
 .headers {
-  font-size: 26px;
+  font-size: 28px;
   letter-spacing: 8px;
   color: #000000;
 }
@@ -45,11 +45,7 @@ h3 {
 button {
   letter-spacing: 1px;
   background-color: white;
-  font-size: 12px;
-  color: #000000;
-}
-
-input {
+  font-size: 14px;
   color: #000000;
 }
 
@@ -70,7 +66,15 @@ input {
 }
 
 label {
-  font-weight: normal;
+  font-weight: lighter;
+  font-family: sans-serif;
+  letter-spacing: 8px;
+}
+
+input {
+  color: #000000;
+  margin-bottom: 2%;
+  padding-right: 30%;
 }
 
 .nav-link {
@@ -106,8 +110,19 @@ ul {
   list-style-type: none;
 }
 
+ol li {
+  margin-bottom: 2%;
+  letter-spacing: 4px;
+  font-size: 22px;
+}
+
+.key {
+  margin-bottom: 2%;
+  letter-spacing: 4px;
+  font-size: 22px;
+}
+
 .row {
-  /*margin-top: 5%;*/
   margin-bottom: 5%;
 }
 
@@ -128,7 +143,7 @@ ul {
 
 .stylist-details, .stylist-key, .client-info, .new-stylist, .client-details, .edit-client, .edit-stylist {
   background-color: #000000;
-  padding-left: 20%;
+  padding-left: 15%;
   color: #ffffff;
   opacity: 0.7;
 }

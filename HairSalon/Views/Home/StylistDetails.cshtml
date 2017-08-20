@@ -25,11 +25,11 @@
   <div class="col-md-1">
   </div>
   <div class="col-md-4">
-    <p><span class="headers">@Model["stylists"].GetFirstName() @Model["stylists"].GetLastName()</span> | <a href='/stylists/@Model["stylists"].GetId()/details/edit'><span class="links">edit</span></a> <p>
+    <p><span class="headers">@Model["stylists"].GetFirstName() @Model["stylists"].GetLastName() | </span> <a href='/stylists/@Model["stylists"].GetId()/details/edit'><span class="links">edit</span></a> <p>
     <div class="well stylist-details">
-      <p>stylist id: @Model["stylists"].GetId()</p>
-      <p>women's cut: $@Model["stylists"].GetWomensCut()</p>
-      <p>men's cut: $@Model["stylists"].GetMensCut()</p>
+      <p>stylist id @Model["stylists"].GetId()</p>
+      <p>women's cut $@Model["stylists"].GetWomensCut()</p>
+      <p>men's cut $@Model["stylists"].GetMensCut()</p>
     </div>
   </div>
 
@@ -41,16 +41,20 @@
     <div class="well stylist-details">
       <div class="form">
         <form action='stylists/new-client' method="post">
-          <label for="client-first-name">first name: </label>
+          <label for="client-first-name">first name </label>
+          <br>
           <input type="text" id="client-first-name" name="client-first-name">
           <br>
-          <label for="client-last-name">last name: </label>
+          <label for="client-last-name">last name </label>
+          <br>
           <input type="text" id="client-last-name" name="client-last-name">
           <br>
-          <label for="client-phone">phone: </label>
+          <label for="client-phone">phone </label>
+          <br>
           <input type="text" id="client-phone" name="client-phone">
           <br>
-          <label for="client-email">email: </label>
+          <label for="client-email">email </label>
+          <br>
           <input type="text" id="client-email" name="client-email">
           <br>
           <button type="submit">add client</button>
@@ -63,7 +67,7 @@
 </div>
 
 
-<h2>client list</h2>
+<h2>@Model["stylists"].GetFirstName()'s client list</h2>
 
 <div class="well name-list">
   <ol>
