@@ -102,7 +102,7 @@ namespace HairSalon.Controllers
     {
       Stylist thisStylist = Stylist.Find(id);
       thisStylist.UpdateStylistFirstName(Request.Form["stylist-first-name"]);
-      return View("EditStylist", thisStylist);
+      return RedirectToAction("EditStylist", thisStylist);
     }
 
     [HttpPost("/stylists/{id}/details/edit-last-name")]
@@ -110,7 +110,7 @@ namespace HairSalon.Controllers
     {
       Stylist thisStylist = Stylist.Find(id);
       thisStylist.UpdateStylistLastName(Request.Form["stylist-last-name"]);
-      return View("EditStylist", thisStylist);
+      return RedirectToAction("EditStylist", thisStylist);
     }
 
     [HttpPost("/stylists/{id}/details/edit-womens-cut")]
@@ -118,7 +118,7 @@ namespace HairSalon.Controllers
     {
       Stylist thisStylist = Stylist.Find(id);
       thisStylist.UpdateStylistWomensCut(int.Parse(Request.Form["stylist-womens-cut"]));
-      return View("EditStylist", thisStylist);
+      return RedirectToAction("EditStylist", thisStylist);
     }
 
     [HttpPost("/stylists/{id}/details/edit-mens-cut")]
@@ -126,7 +126,7 @@ namespace HairSalon.Controllers
     {
       Stylist thisStylist = Stylist.Find(id);
       thisStylist.UpdateStylistMensCut(int.Parse(Request.Form["stylist-mens-cut"]));
-      return View("EditStylist", thisStylist);
+      return RedirectToAction("EditStylist", thisStylist);
     }
 
     [HttpGet("/stylists/{id}/details/{id2}details")]
@@ -181,11 +181,7 @@ namespace HairSalon.Controllers
     {
       Client.DeleteClient(id2);
       Stylist thisStylist = Stylist.Find(id);
-      List<Client> allClients = thisStylist.GetClients();
-      Dictionary<string, object> model = new Dictionary<string, object>();
-      model.Add("stylists", thisStylist);
-      model.Add("clients", allClients);
-      return View(model);
+      return View();
     }
 
   }
