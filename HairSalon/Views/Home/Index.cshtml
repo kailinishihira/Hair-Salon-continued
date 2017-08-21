@@ -20,10 +20,17 @@
 <h1>salon 206</h1>
 
 <h2>stylists</h2>
-
-<div class="stylists">
-  @foreach (var stylist in Model)
-  {
-    <a href="/stylists/@stylist.GetId()/details"><button type="button" class=" btn-lg stylists-buttons">@stylist.GetFirstName()</button></a>
-  }
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <div class="well stylists">
+      @foreach (var stylist in Model)
+      {
+        <a href="/stylists/@stylist.GetId()/details"><button type="button" class="btn-lg stylists-buttons">@stylist.GetFirstName()</button></a>
+      }
+    </div>
+  </div>
+  <div class="col-md-1">
+  </div>
 </div>

@@ -25,7 +25,7 @@
   <div class="col-md-1">
   </div>
   <div class="col-md-4">
-    <p><span class="headers">@Model.GetFirstName() @Model.GetLastName() | <a href="/stylists/@Model.GetId()/details"></span><span class="links">details</span></a></p>
+    <p class="headers">@Model.GetFirstName() @Model.GetLastName() | <a href="/stylists/@Model.GetId()/details"> <span class="links">details</span></a></p>
     <div class="well stylist-details">
       <p>women's cut $@Model.GetWomensCut()</p>
       <p>men's cut $@Model.GetMensCut()</p>
@@ -34,7 +34,7 @@
   <div class="col-md-2">
   </div>
   <div class="col-md-4">
-    <p><span class="headers">Edit @Model.GetFirstName()'s details</span></p>
+    <p class="headers">Edit @Model.GetFirstName()'s details</span></p>
     <div class="well edit-stylist">
       <div class="form">
         <form action="/stylists/@Model.GetId()/details/edit-first-name" method="post">

@@ -25,7 +25,7 @@
   <div class="col-md-1">
   </div>
   <div class="col-md-4">
-    <p><span class="headers">@Model["stylists"].GetFirstName() @Model["stylists"].GetLastName() | </span> <a href='/stylists/@Model["stylists"].GetId()/details/edit'><span class="links">edit</span></a> <p>
+    <p class="headers">@Model["stylists"].GetFirstName() @Model["stylists"].GetLastName() | <a href='/stylists/@Model["stylists"].GetId()/details/edit'><span class="links">edit</span></a> <p>
     <div class="well stylist-details">
       <p>stylist id @Model["stylists"].GetId()</p>
       <p>women's cut $@Model["stylists"].GetWomensCut()</p>
@@ -37,8 +37,8 @@
 </div>
 
   <div class="col-md-4">
-    <p><span class="headers">new client for @Model["stylists"].GetFirstName()</span></p>
-    <div class="well stylist-details">
+    <p class="headers">new client for @Model["stylists"].GetFirstName()</span></p>
+    <div class="well stylist-new-client">
       <div class="form">
         <form action='stylists/new-client' method="post">
           <label for="client-first-name">first name </label>
@@ -67,7 +67,7 @@
 </div>
 
 
-<h2>@Model["stylists"].GetFirstName()'s client list</h2>
+<p id="stylist-list">@Model["stylists"].GetFirstName()'s client list</p>
 
 <div class="well name-list">
   <ol>

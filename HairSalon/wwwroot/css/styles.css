@@ -2,44 +2,71 @@ body {
   letter-spacing: 3px;
   color: #47494c;
   background-color: #e4e4e4;
+  background-image: url("../img/background.png");
+  background-repeat: no-repeat;
   font-size: 18px;
 }
 
 h1 {
-  font-size: 100px;
-  letter-spacing: 25px;
+  font-size: 80px;
+  letter-spacing: 30px;
   text-align: center;
-  margin-top: 2%;
-  margin-bottom: 2%;
+  margin-top: 1%;
+  margin-bottom: 1%;
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
+  background-color: #ffffff;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  opacity: 0.9;
 }
 
 h2 {
-  font-size: 60px;
+  font-size: 50px;
   letter-spacing: 25px;
   text-align: center;
   color: #636566;
-  margin-bottom: 2%;
+  margin-bottom: 1%;
+  background-color: #000000;
+  opacity: 0.9;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+#stylist-list  {
+  font-size: 50px;
+  letter-spacing: 25px;
+  text-align: center;
+  color: #636566;
+  margin-bottom: 1%;
+  background-color: #000000;
+  opacity: 0.9;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  margin-left: 8%;
+  margin-right: 8%;
 }
 
 h3 {
   letter-spacing: 8px;
   text-align: left;
   margin-bottom: 4%;
-  font-size: 28px;
+  font-size: 24px;
   color: #000000;
-}
-
-.stylists{
-  text-align: center;
-  margin-top: 5%;
+  background-color: #ffffff;
+  padding: 2% 2% 2% 2%;
+  opacity: 0.9;
 }
 
 .headers {
-  font-size: 28px;
+  font-size: 24px;
   letter-spacing: 8px;
   color: #000000;
+  background-color: #ffffff;
+  opacity: 0.9;
+  padding: 2% 2% 2% 2%;
 }
 
 button {
@@ -49,16 +76,22 @@ button {
   color: #000000;
 }
 
+.stylists {
+  text-align: center;
+  margin-top: 3%;
+  background-color: #000000;
+  opacity: 0.9;
+}
+
 .stylists-buttons {
-  background-color: black;
-  padding: 25px 35px 25px 35px;
+  background-color: #ffffff;
+  padding: 18px 28px 18px 28px;
   margin: 2% 2% 2% 2%;
-  font-size: 32px;
-  letter-spacing: 5px;
-  color: white;
+  font-size: 26px;
+  letter-spacing: 3px;
+  color: #000000;
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
-  opacity: 0.7;
 }
 
 .stylists-buttons:hover {
@@ -69,6 +102,7 @@ label {
   font-weight: lighter;
   font-family: sans-serif;
   letter-spacing: 8px;
+  margin-top: 2%;
 }
 
 input {
@@ -77,8 +111,15 @@ input {
   padding-right: 30%;
 }
 
+.nav-pills {
+  background-color: #ffffff;
+  margin-right: 60%;
+  opacity: 0.8;
+}
+
 .nav-link {
-  color: #47494c;
+  /*color: #47494c;*/
+  color: #000000;
 }
 
 .nav-link:hover {
@@ -118,12 +159,12 @@ ol li {
 
 .key {
   margin-bottom: 2%;
-  letter-spacing: 4px;
-  font-size: 22px;
+  letter-spacing: 2px;
+  font-size: 20px;
 }
 
 .row {
-  margin-bottom: 5%;
+  margin-bottom: 3%;
 }
 
 .delete {
@@ -138,12 +179,33 @@ ol li {
   background-color: #000000;
   padding-left: 15%;
   color: #ffffff;
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
-.stylist-details, .stylist-key, .client-info, .new-stylist, .client-details, .edit-client, .edit-stylist {
+.stylist-new-client, .stylist-key, .client-info, .edit-client, .edit-stylist {
   background-color: #000000;
-  padding-left: 15%;
+  padding-left: 8%;
   color: #ffffff;
-  opacity: 0.7;
+  opacity: 0.9;
+}
+
+.stylist-details {
+  background-color: #000000;
+  padding-left: 24%;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.client-details {
+  background-color: #000000;
+  padding-left: 20%;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.new-stylist {
+  background-color: #000000;
+  padding-left: 20%;
+  color: #ffffff;
+  opacity: 0.9;
 }
