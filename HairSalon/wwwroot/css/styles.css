@@ -170,7 +170,12 @@ ol li {
 .delete {
   text-align: center;
   margin-top: 5%;
+  background-color: #ffffff;
+  margin-left: 45%;
+  margin-right: 45%;
+  opacity: 0.9;
 }
+
 /*wells*/
 
 .name-list {
