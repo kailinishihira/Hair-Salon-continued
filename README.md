@@ -52,6 +52,6 @@ _An app which will enable the user to enter and retrieve a stylist's name and se
 
 ### License
 
-Copyright (c) 2017 **_Kaili Nishihira**
+Copyright (c) 2018 **_Kaili Nishihira**
 
 *Licensed under the [MIT License](https://opensource.org/licenses/MIT)*
